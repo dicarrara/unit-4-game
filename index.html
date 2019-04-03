@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cristal game</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+
+</head>
+
+<body>
+    <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                  <h1 class="text-center">CrystalsCollector Game</h1>
+                  <p class="lead">Match the random number</p>
+                </div>
+    </div>
+    
+         <p id="randomNumber-text"></p>
+         <p id="yourscore"></p>
+         <p id="wins"></p>
+         <p id="loses"></p>
+         <div id="crystal">      
+    </div>
+
+    <script>
+
+        var score = [];
+        var randomNumber = [];
+        wins=0;
+        loses=0;
+        
+
+    // choose random number from 19-120 and show it on a screen
+    // we need 4 cristals with a random assign value from 1-12. Cristals should be shown on a screen    
+    // everytime user press the button value of cristals will go to the array "your total score", so value + 
+    // if total score === random number, than person win, if > than random number user lose.
+    // restart the game when player win or lose. With a new random number and new value for cristals.
+
+
+    
+    function restartGame () {
+         score === 0;
+         randomNumber = Math.floor(Math.random() * 120) + 19;
+         $("#randomNumber-text").text(randomNumber);
+        
+        // how will we do for only 4 cristals and dif value
+         for (var i=0; i < 4; i++) {
+
+            var randomValue = Math.floor(Math.random () * 12) + 1;
+            console.log("this is our random value for crystals " + randomValue)
+
+             var imageCrystal = $("<img>");
+             imageCrystal.addClass("crystal-image");
+             imageCrystal.attr("src", "assets/images/crystal.jpg");
+             imageCrystal.attr("data-info", randomValue);
+             $("#crystal").append(imageCrystal);
+    
+         } 
+         
+
+        
+    }
+
+    restartGame()
+
+    $(".crystal-image").on("click", function () {
+
+        var crystalValue = ($(this).attr("data-info"));
+        crystalValue = parseInt(crystalValue);
+        score+=crystalValue;
+        $("#yourscore").text(score);
+    
+        if (score === randomNumber) {
+            alert("Win Win Win");
+            win++;
+            $("#wins").text("You win " + win);
+            restartGame()
+        } else if (score > randomNumber) {
+            alert("you lost");
+            loses++;
+            $("#loses").text("You lose " + loses);
+            restartGame();
+        }  
+
+    });
+
+ 
+
+    </script>
+
+
+
+</body>
