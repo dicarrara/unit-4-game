@@ -1,97 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Cristal game</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
-    
+    <script src="assets/javascript/game.js" type="text/javascript"></script>
+
+
 
 </head>
 
 <body>
-    <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                  <h1 class="text-center">CrystalsCollector Game</h1>
-                  <p class="lead">Match the random number</p>
-                </div>
-    </div>
-    
-         <p id="randomNumber-text"></p>
-         <p id="yourscore"></p>
-         <p id="wins"></p>
-         <p id="loses"></p>
-         <div id="crystal">      
-    </div>
 
+    <div class="container">
+
+        <h1 class="glow">Jazz Club</h1>
+        <p class="lead">Match the random number and help Frank to write a melody</p>
+        
+        <div id="hide">
+            <p id="randomNumber-text"></p>
+            <p id="yourscore"></p>
+            <p id="wins"></p>
+            <p id="loses"></p>
+
+            <div id="notes">
+
+                <img src="assets/images/note1.png" id="crystal1" class="img-fluid" alt="Responsive image">
+                <img src="assets/images/note1.png" id="crystal2" class="img-fluid" alt="Responsive image">
+                <img src="assets/images/note1.png" id="crystal3" class="img-fluid" alt="Responsive image">
+                <img src="assets/images/note1.png" id="crystal4" class="img-fluid" alt="Responsive image">
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- 
     <script>
 
-        var score = [];
-        var randomNumber = [];
-        wins=0;
-        loses=0;
-        
-
-    // choose random number from 19-120 and show it on a screen
-    // we need 4 cristals with a random assign value from 1-12. Cristals should be shown on a screen    
-    // everytime user press the button value of cristals will go to the array "your total score", so value + 
-    // if total score === random number, than person win, if > than random number user lose.
-    // restart the game when player win or lose. With a new random number and new value for cristals.
+        // choose random number from 19-120 and show it on a screen
+        // we need 4 cristals with a random assign value from 1-12. Cristals should be shown on a screen    
+        // everytime user press the button value of cristals will go to the array "your total score", so value + 
+        // if total score === random number, than person win, if > than random number user lose.
+        // restart the game when player win or lose. With a new random number and new value for cristals.
 
 
-    
-    function restartGame () {
-         score === 0;
-         randomNumber = Math.floor(Math.random() * 120) + 19;
-         $("#randomNumber-text").text(randomNumber);
-        
-        // how will we do for only 4 cristals and dif value
-         for (var i=0; i < 4; i++) {
+    $(document).ready(function () {
 
-            var randomValue = Math.floor(Math.random () * 12) + 1;
-            console.log("this is our random value for crystals " + randomValue)
+            var score = 0;
+            var randomNumber = [];
+            wins = 0;
+            loses = 0;
 
-             var imageCrystal = $("<img>");
-             imageCrystal.addClass("crystal-image");
-             imageCrystal.attr("src", "assets/images/crystal.jpg");
-             imageCrystal.attr("data-info", randomValue);
-             $("#crystal").append(imageCrystal);
-    
-         } 
-         
 
-        
-    }
 
-    restartGame()
+            function restartGame() {
+                score = 0;
+                $("yourscore").text(score);
+                randomNumber = Math.floor(Math.random() * 120) + 19;
+                $("#randomNumber-text").text(randomNumber);
 
-    $(".crystal-image").on("click", function () {
+                // how will we do for only 4 cristals and dif value of 1-12?
+                // for (var i = 0; i < 1; i++) {
 
-        var crystalValue = ($(this).attr("data-info"));
-        crystalValue = parseInt(crystalValue);
-        score+=crystalValue;
-        $("#yourscore").text(score);
-    
-        if (score === randomNumber) {
-            alert("Win Win Win");
-            win++;
-            $("#wins").text("You win " + win);
-            restartGame()
-        } else if (score > randomNumber) {
-            alert("you lost");
-            loses++;
-            $("#loses").text("You lose " + loses);
+                var randomValueCrystal1 = Math.floor(Math.random() * 12) + 1;
+                console.log("this is our random value for crystal1 " + randomValueCrystal1);
+                $("#crystal1").attr("data-info", randomValueCrystal1);
+
+                var randomValueCrystal2 = Math.floor(Math.random() * 12) + 1;
+                console.log("this is our random value for crystal2 " + randomValueCrystal2);
+                $("#crystal2").attr("data-info", randomValueCrystal2);
+
+                var randomValueCrystal3 = Math.floor(Math.random() * 12) + 1;
+                console.log("this is our random value for crystal3 " + randomValueCrystal3);
+                $("#crystal3").attr("data-info", randomValueCrystal3);
+
+
+                var randomValueCrystal4 = Math.floor(Math.random() * 12) + 1;
+                console.log("this is our random value for note1 randomValueCrystal4);
+                $("#crystal4").attr("data-info", randomValueCrystal4);
+
+            }
+
             restartGame();
-        }  
-
-    });
-
- 
-
-    </script>
 
 
+            $(".img-fluid").on("click", function () {
 
+                var crystalValue = ($(this).attr("data-info"));
+                crystalValue = parseInt(crystalValue);
+                score += crystalValue;
+                $("#yourscore").text(score);
+                checkwin();
+
+            });
+
+
+            function checkwin() {
+                if (score === randomNumber) {
+                    wins += 1;
+                    $("#wins").text("You win " + wins);
+                    alert("Win Win Win");
+                    restartGame();
+                } else if (score > randomNumber) {
+                    loses += 1;
+                    $("#loses").text("You lose " + loses);
+                    alert("you lost");
+                    restartGame();
+                }
+
+            }
+        });
+
+
+            </script> -->
 </body>
+
+</html>
