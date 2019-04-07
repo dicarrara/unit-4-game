@@ -15,9 +15,7 @@ $(document).ready(function () {
     var audioElement = document.createElement("audio");
     audioElement.setAttribute("src", "../images/Saxophone.mp3");
 
-
-
-
+    
     function restartGame() {
         score = 0;
         $("yourscore").text(score);
@@ -77,5 +75,9 @@ $(document).ready(function () {
         }
 
     }
+
+   
+
+ 
 });
 
