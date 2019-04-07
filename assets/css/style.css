@@ -1,6 +1,11 @@
 .img-fluid {
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
+}
+
+#frank {
+  width: 160px;
+  height: 160px;
 }
 
 body {

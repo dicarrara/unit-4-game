@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- <script src="assets/javascript/game.js" type="text/javascript"></script> -->
+    <script src="assets/javascript/game.js" type="text/javascript"></script>
 
 
 
@@ -20,8 +20,8 @@
     <div class="container">
 
         <h1 class="glow">Jazz Club</h1>
-        <p class="lead">Match the random number and help Frank to write a melody</p>
-        
+        <p class="lead">Match the random number and help Frank to collect notes</p>
+
         <div id="hide-all">
             <p id="randomNumber-text"></p>
             <p id="yourscore"></p>
@@ -37,119 +37,15 @@
                 <img src="assets/images/sac.png" id="frank" class="img-fluid" alt="Responsive image">
 
             </div>
-
             
 
         </div>
 
-        <button type="button" class="btn btn-primary btn-lg" id="button">RESTART</button>   
+        <button type="button" class="btn btn-primary btn-lg" id="button">RESTART</button>
 
     </div>
 
 
-    <script>
-
-    $(document).ready(function () {
-
-        var score = 0;
-        var randomNumber = [];
-        wins = 0;
-        loses = 0;
-
-        var audioElement = document.createElement("audio");
-        audioElement.setAttribute("src", "assets/images/Saxophone.mp3");
-
-
-        function frankPlaying() {
-            $("#frank").html('<img src="assets/images/sac.png">');
-            // $('.frank').attr("{margin: 0 auto}");
-            audioElement.play();
-
-        }
-
-
-
-
-        function restartGame() {
-
-            score = 0;
-            $("yourscore").text(score);
-            randomNumber = Math.floor(Math.random() * 120) + 19;
-            $("#randomNumber-text").text("Number to match: " + randomNumber);
-
-            // how will we do for only 4 cristals and dif value of 1-12?
-            // for (var i = 0; i < 1; i++) {
-            audioElement.pause();
-            $("#frank").hide();
-
-            var randomValueCrystal1 = Math.floor(Math.random() * 12) + 1;
-            console.log("this is our random value for crystal1 " + randomValueCrystal1);
-            $("#crystal1").attr("data-info", randomValueCrystal1);
-
-
-            var randomValueCrystal2 = Math.floor(Math.random() * 12) + 1;
-            console.log("this is our random value for crystal2 " + randomValueCrystal2);
-            $("#crystal2").attr("data-info", randomValueCrystal2);
-
-
-            var randomValueCrystal3 = Math.floor(Math.random() * 12) + 1;
-            console.log("this is our random value for crystal3 " + randomValueCrystal3);
-            $("#crystal3").attr("data-info", randomValueCrystal3);
-
-
-
-            var randomValueCrystal4 = Math.floor(Math.random() * 12) + 1;
-            console.log("this is our random value for crystals4 " + randomValueCrystal4);
-            $("#crystal4").attr("data-info", randomValueCrystal4);
-
-
-        }
-
-        restartGame();
-
-
-
-        $("#button").on("click", function () {
-
-            restartGame()
-
-        });
-
-
-        $(".img-fluid").on("click", function () {
-
-            var crystalValue = ($(this).attr("data-info"));
-            crystalValue = parseInt(crystalValue);
-            score += crystalValue;
-            $("#yourscore").text("Your score is: " + score);
-            checkwin();
-
-        });
-
-
-
-        function checkwin() {
-            if (score === randomNumber) {
-                wins += 1;
-                $("#wins").text("You win " + wins);
-                alert("Win Win Win");
-                frankPlaying();
-            } else if (score > randomNumber) {
-                loses += 1;
-                $("#loses").text("You lose " + loses);
-                alert("you lost");
-                restartGame();
-            }
-
-        }
-
-
-
-
-    });
-
-        </script>
-   
 </body>
 
 </html>
