@@ -61,6 +61,7 @@
             function frankPlaying() {
                 // $("#notes").html('<img src="../images/frank2.png">');
                 audio.play();
+                restartGame();
 
             }
 
@@ -72,7 +73,7 @@
                 $("#randomNumber-text").text("Number to match: " + randomNumber);
 
 
-                audio.pause();
+                // audio.pause();
                 // $("#frank").hide();
 
                 var randomValueCrystal1 = Math.floor(Math.random() * 12) + 1;
@@ -128,19 +129,19 @@
                     Swal.fire({
                         imageUrl: 'assets/images/sac.png',
                         imageHeight: 150,
-                        imageAlt: 'A tall image',
+                        imageAlt: 'Frank image',
                         background: "#F1DBFF",
-                        text: "Good job!",
-                                                
+                        text: "Good job! ",
+                                               
                     })
 
                     frankPlaying();
-                    // restartGame();
+                    
                 } else if (score > randomNumber) {
                     loses += 1;
                     $("#loses").text("You lose " + loses);
                     Swal.fire({
-                        text: "Try one more time!",
+                        text: "Try again!",
                     })
                     restartGame();
                 }

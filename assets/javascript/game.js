@@ -5,15 +5,15 @@ $(document).ready(function () {
     wins = 0;
     loses = 0;
 
-    // var audio = document.createElement("audio");
-    // audioElement.setAttribute("src", "Saxophone.mp3");
+    var audio=document.createElement("audio");
+    audio.setAttribute("src", "assets/images/Saxophone.mp3");
 
 
-    // function frankPlaying() {
-    //     // $("#notes").html('<img src="../images/frank2.png">');
-    //     audioElement.play();
+    function frankPlaying() {
+        // $("#notes").html('<img src="../images/frank2.png">');
+        audio.play();
 
-    // }
+    }
 
     function restartGame() {
 
@@ -23,7 +23,7 @@ $(document).ready(function () {
         $("#randomNumber-text").text("Number to match: " + randomNumber);
 
 
-        // audioElement.pause();
+        audio.pause();
         // $("#frank").hide();
 
         var randomValueCrystal1 = Math.floor(Math.random() * 12) + 1;
@@ -76,18 +76,23 @@ $(document).ready(function () {
         if (score === randomNumber) {
             wins += 1;
             $("#wins").text("You win " + wins);
-            alert("Win Win Win");
             Swal.fire({
-                imageUrl: 'sac.png',
+                imageUrl: 'assets/images/sac.png',
                 imageHeight: 150,
-                imageAlt: 'A tall image'
-              })
-            // frankPlaying();
+                imageAlt: 'Frank image',
+                background: "#F1DBFF",
+                text: "Good job! ",
+                                       
+            })
+
+            frankPlaying() ;
             // restartGame();
         } else if (score > randomNumber) {
             loses += 1;
             $("#loses").text("You lose " + loses);
-            alert("you lost");
+            Swal.fire({
+                text: "Try one more time!",
+            })
             restartGame();
         }
 
