@@ -15,3 +15,5 @@ hidden values, and the player's total score is reset to 0.
 Game design note:
 The random number shown at the start of the game should be between 19 - 120
 Each crystal should have a random hidden value between 1 - 12
+
+![pic](https://user-images.githubusercontent.com/46904899/55697385-81cda480-597e-11e9-9ed0-a7f4bdeb0320.jpg)
