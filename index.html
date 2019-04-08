@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <title>Cristal game</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/javascript/game.js" type="text/javascript"></script>
+    <!-- <script src="assets/javascript/game.js" type="text/javascript"></script> -->
 
 
 
@@ -34,16 +35,123 @@
                 <img src="assets/images/note1.png" id="crystal2" class="img-fluid" alt="Responsive image">
                 <img src="assets/images/note1.png" id="crystal3" class="img-fluid" alt="Responsive image">
                 <img src="assets/images/note1.png" id="crystal4" class="img-fluid" alt="Responsive image">
-                <img src="assets/images/sac.png" id="frank" class="img-fluid" alt="Responsive image">
+                <!-- <img src="assets/images/sac.png" id="frank" class="img-fluid" alt="Responsive image"> -->
 
             </div>
-            
+
 
         </div>
 
         <button type="button" class="btn btn-primary btn-lg" id="button">RESTART</button>
 
     </div>
+    <script>
+
+        $(document).ready(function () {
+
+            var score = 0;
+            var randomNumber = [];
+            wins = 0;
+            loses = 0;
+
+            var audio=document.createElement("audio");
+            audio.setAttribute("src", "assets/images/Saxophone.mp3");
+
+
+            function frankPlaying() {
+                // $("#notes").html('<img src="../images/frank2.png">');
+                audio.play();
+
+            }
+
+            function restartGame() {
+
+                score = 0;
+                $("yourscore").text(score);
+                randomNumber = Math.floor(Math.random() * 120) + 19;
+                $("#randomNumber-text").text("Number to match: " + randomNumber);
+
+
+                audio.pause();
+                // $("#frank").hide();
+
+                var randomValueCrystal1 = Math.floor(Math.random() * 12) + 1;
+                console.log("this is our random value for crystal1 " + randomValueCrystal1);
+                $("#crystal1").attr("data-info", randomValueCrystal1);
+
+
+                var randomValueCrystal2 = Math.floor(Math.random() * 12) + 1;
+                console.log("this is our random value for crystal2 " + randomValueCrystal2);
+                $("#crystal2").attr("data-info", randomValueCrystal2);
+
+
+                var randomValueCrystal3 = Math.floor(Math.random() * 12) + 1;
+                console.log("this is our random value for crystal3 " + randomValueCrystal3);
+                $("#crystal3").attr("data-info", randomValueCrystal3);
+
+
+
+                var randomValueCrystal4 = Math.floor(Math.random() * 12) + 1;
+                console.log("this is our random value for crystals4 " + randomValueCrystal4);
+                $("#crystal4").attr("data-info", randomValueCrystal4);
+
+
+            }
+
+            restartGame();
+
+
+
+            $("#button").on("click", function () {
+
+                restartGame()
+
+            });
+
+
+            $(".img-fluid").on("click", function () {
+
+                var crystalValue = ($(this).attr("data-info"));
+                crystalValue = parseInt(crystalValue);
+                score += crystalValue;
+                $("#yourscore").text("Your score is: " + score);
+                checkwin();
+
+            });
+
+
+
+            function checkwin() {
+                if (score === randomNumber) {
+                    wins += 1;
+                    $("#wins").text("You win " + wins);
+                    Swal.fire({
+                        imageUrl: 'assets/images/sac.png',
+                        imageHeight: 150,
+                        imageAlt: 'A tall image',
+                        text: "Good job!",
+                        
+                    })
+
+                    frankPlaying();
+                    // restartGame();
+                } else if (score > randomNumber) {
+                    loses += 1;
+                    $("#loses").text("You lose " + loses);
+                    Swal.fire({
+                        text: "Try one more time!",
+                    })
+                    restartGame();
+                }
+
+            }
+
+
+        });
+
+    </script>
+
+
 
 
 </body>

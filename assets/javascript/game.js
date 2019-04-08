@@ -77,8 +77,13 @@ $(document).ready(function () {
             wins += 1;
             $("#wins").text("You win " + wins);
             alert("Win Win Win");
+            Swal.fire({
+                imageUrl: 'sac.png',
+                imageHeight: 150,
+                imageAlt: 'A tall image'
+              })
             // frankPlaying();
-            restartGame();
+            // restartGame();
         } else if (score > randomNumber) {
             loses += 1;
             $("#loses").text("You lose " + loses);
